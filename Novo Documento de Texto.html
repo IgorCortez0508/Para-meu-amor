@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Para Minha Futura Esposa ❤️</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('heart.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .music-player {
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .carousel {
+      margin: 20px auto;
+      max-width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: auto;
+      display: none;
+      border: 5px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .carousel img.active {
+      display: block;
+      box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.8);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.6);
+      }
+      to {
+        box-shadow: 0 0 20px 6px rgba(255, 0, 0, 1);
+      }
+    }
+
+    .contador {
+      margin: 20px auto;
+      font-size: 18px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contador .texto-amor,
+    #tempo {
+      color: white;
+      background-color: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-weight: bold;
+      font-size: 16px;
+      margin: 5px 0;
+      display: inline-block;
+    }
+
+    .mensagem {
+      margin: 40px auto 20px auto;
+      max-width: 600px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 30px;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    iframe {
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="music-player">
+    <iframe
+      style="border-radius:12px"
+      src="https://open.spotify.com/embed/track/3frUGysGT9dq0soPKUhDM1?utm_source=generator&theme=0&autoplay=1"
+      width="300"
+      height="80"
+      frameborder="0"
+      allowtransparency="true"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    ></iframe>
+  </div>
+
+  <div class="carousel">
+    <img src="foto1.jpg" class="active" />
+    <img src="foto2.jpg" />
+    <img src="foto3.jpg" />
+    <img src="foto4.jpg" />
+    <img src="foto5.jpg" />
+    <img src="foto6.jpg" />
+    <img src="foto7.jpg" />
+    <img src="foto8.jpg" />
+    <img src="foto9.jpg" />
+    <img src="foto10.jpg" />
+  </div>
+
+  <div class="contador">
+    <div class="texto-amor">Eu te amo há:</div>
+    <div id="tempo"></div>
+  </div>
+
+  <div class="mensagem">
+    Fiz esse site pra quando você sentir saudades de mim, meu amor. Como falar é melhor do que palavras, logo acima deixei um recado pra você, minha gatinha ❤️
+  </div>
+
+  <script>
+    // Carrossel de fotos
+    const fotos = document.querySelectorAll('.carousel img');
+    let index = 0;
+    setInterval(() => {
+      fotos[index].classList.remove('active');
+      index = (index + 1) % fotos.length;
+      fotos[index].classList.add('active');
+    }, 6000);
+
+    // Contador de tempo
+    function atualizaContador() {
+      const inicio = new Date("2016-08-05T17:00:00");
+      const agora = new Date();
+
+      let anos = agora.getFullYear() - inicio.getFullYear();
+      let meses = agora.getMonth() - inicio.getMonth();
+      let dias = agora.getDate() - inicio.getDate();
+
+      if (dias < 0) {
+        meses--;
+        const ultimoMes = new Date(agora.getFullYear(), agora.getMonth(), 0);
+        dias += ultimoMes.getDate();
+      }
+
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+
+      const diff = agora - inicio;
+      const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("tempo").textContent =
+        `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+    }
+
+    setInterval(atualizaContador, 1000);
+    atualizaContador();
+  </script>
+</body>
+</html>
